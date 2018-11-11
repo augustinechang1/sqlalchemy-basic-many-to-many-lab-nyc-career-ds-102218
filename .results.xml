@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="7" name="pytest" skips="0" tests="7" time="0.860"><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="8" name="test_actors" time="0.0021533966064453125"><failure message="AssertionError: 10 != 5">self = &lt;index_test.TestBasicHasManyThrough testMethod=test_actors&gt;
+
+    def test_actors(self):
+&gt;       self.assertEqual(len(session.query(Actor).all()), 5)
+E       AssertionError: 10 != 5
+
+test/index_test.py:10: AssertionError</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="14" name="test_actors_have_many_roles" time="0.0019872188568115234"><failure message="sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()">self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd54320&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+&gt;           ret = self.one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2954: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd54320&gt;
+
+    def one_or_none(self):
+        &quot;&quot;&quot;Return at most one result or raise an exception.
+    
+            Returns ``None`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.Query.one_or_none` results in an execution of the
+            underlying query.
+    
+            .. versionadded:: 1.0.9
+    
+                Added :meth:`.Query.one_or_none`
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one`
+    
+            &quot;&quot;&quot;
+        ret = list(self)
+    
+        l = len(ret)
+        if l == 1:
+            return ret[0]
+        elif l == 0:
+            return None
+        else:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one_or_none()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2933: MultipleResultsFound
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;index_test.TestBasicHasManyThrough testMethod=test_actors_have_many_roles&gt;
+
+    def test_actors_have_many_roles(self):
+&gt;       bale = session.query(Actor).filter_by(name=&quot;Christian Bale&quot;).one()
+
+test/index_test.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd54320&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+            ret = self.one_or_none()
+        except orm_exc.MultipleResultsFound:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2957: MultipleResultsFound</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="36" name="test_return_catwoman_actors" time="0.002911090850830078"><failure message="sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()">self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dcc99c7b8&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+&gt;           ret = self.one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2954: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dcc99c7b8&gt;
+
+    def one_or_none(self):
+        &quot;&quot;&quot;Return at most one result or raise an exception.
+    
+            Returns ``None`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.Query.one_or_none` results in an execution of the
+            underlying query.
+    
+            .. versionadded:: 1.0.9
+    
+                Added :meth:`.Query.one_or_none`
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one`
+    
+            &quot;&quot;&quot;
+        ret = list(self)
+    
+        l = len(ret)
+        if l == 1:
+            return ret[0]
+        elif l == 0:
+            return None
+        else:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one_or_none()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2933: MultipleResultsFound
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;index_test.TestBasicHasManyThrough testMethod=test_return_catwoman_actors&gt;
+
+    def test_return_catwoman_actors(self):
+&gt;       actors = return_catwoman_actors(session)
+
+test/index_test.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+queries.py:10: in return_catwoman_actors
+    catwoman = session.query(Role).filter_by(character=&apos;Catwoman&apos;).one()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dcc99c7b8&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+            ret = self.one_or_none()
+        except orm_exc.MultipleResultsFound:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2957: MultipleResultsFound</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="27" name="test_return_christian_bales_roles" time="0.0017542839050292969"><failure message="sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()">self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd94a58&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+&gt;           ret = self.one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2954: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd94a58&gt;
+
+    def one_or_none(self):
+        &quot;&quot;&quot;Return at most one result or raise an exception.
+    
+            Returns ``None`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.Query.one_or_none` results in an execution of the
+            underlying query.
+    
+            .. versionadded:: 1.0.9
+    
+                Added :meth:`.Query.one_or_none`
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one`
+    
+            &quot;&quot;&quot;
+        ret = list(self)
+    
+        l = len(ret)
+        if l == 1:
+            return ret[0]
+        elif l == 0:
+            return None
+        else:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one_or_none()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2933: MultipleResultsFound
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;index_test.TestBasicHasManyThrough testMethod=test_return_christian_bales_roles&gt;
+
+    def test_return_christian_bales_roles(self):
+&gt;       roles = return_christian_bales_roles(session)
+
+test/index_test.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+queries.py:5: in return_christian_bales_roles
+    bale = session.query(Actor).filter_by(name=&apos;Christian Bale&apos;).one()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd94a58&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+            ret = self.one_or_none()
+        except orm_exc.MultipleResultsFound:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2957: MultipleResultsFound</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="45" name="test_return_number_of_batman_actors" time="0.0020568370819091797"><failure message="sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()">self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccc5ae48&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+&gt;           ret = self.one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2954: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccc5ae48&gt;
+
+    def one_or_none(self):
+        &quot;&quot;&quot;Return at most one result or raise an exception.
+    
+            Returns ``None`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.Query.one_or_none` results in an execution of the
+            underlying query.
+    
+            .. versionadded:: 1.0.9
+    
+                Added :meth:`.Query.one_or_none`
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one`
+    
+            &quot;&quot;&quot;
+        ret = list(self)
+    
+        l = len(ret)
+        if l == 1:
+            return ret[0]
+        elif l == 0:
+            return None
+        else:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one_or_none()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2933: MultipleResultsFound
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;index_test.TestBasicHasManyThrough testMethod=test_return_number_of_batman_actors&gt;
+
+    def test_return_number_of_batman_actors(self):
+&gt;       result = return_number_of_batman_actors(session)
+
+test/index_test.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+queries.py:15: in return_number_of_batman_actors
+    batman = session.query(Role).filter_by(character=&quot;Batman&quot;).one()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccc5ae48&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+            ret = self.one_or_none()
+        except orm_exc.MultipleResultsFound:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2957: MultipleResultsFound</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="11" name="test_roles" time="0.0019137859344482422"><failure message="AssertionError: 8 != 4">self = &lt;index_test.TestBasicHasManyThrough testMethod=test_roles&gt;
+
+    def test_roles(self):
+&gt;       self.assertEqual(len(session.query(Role).all()), 4)
+E       AssertionError: 8 != 4
+
+test/index_test.py:13: AssertionError</failure></testcase><testcase classname="test.index_test.TestBasicHasManyThrough" file="test/index_test.py" line="21" name="test_roles_have_many_actors" time="0.0017080307006835938"><failure message="sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()">self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd3d8d0&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+&gt;           ret = self.one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2954: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd3d8d0&gt;
+
+    def one_or_none(self):
+        &quot;&quot;&quot;Return at most one result or raise an exception.
+    
+            Returns ``None`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.Query.one_or_none` results in an execution of the
+            underlying query.
+    
+            .. versionadded:: 1.0.9
+    
+                Added :meth:`.Query.one_or_none`
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one`
+    
+            &quot;&quot;&quot;
+        ret = list(self)
+    
+        l = len(ret)
+        if l == 1:
+            return ret[0]
+        elif l == 0:
+            return None
+        else:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one_or_none()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2933: MultipleResultsFound
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;index_test.TestBasicHasManyThrough testMethod=test_roles_have_many_actors&gt;
+
+    def test_roles_have_many_actors(self):
+&gt;       catwoman = session.query(Role).filter_by(character=&quot;Catwoman&quot;).one()
+
+test/index_test.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sqlalchemy.orm.query.Query object at 0x7f2dccd3d8d0&gt;
+
+    def one(self):
+        &quot;&quot;&quot;Return exactly one result or raise an exception.
+    
+            Raises ``sqlalchemy.orm.exc.NoResultFound`` if the query selects
+            no rows.  Raises ``sqlalchemy.orm.exc.MultipleResultsFound``
+            if multiple object identities are returned, or if multiple
+            rows are returned for a query that returns only scalar values
+            as opposed to full identity-mapped entities.
+    
+            Calling :meth:`.one` results in an execution of the underlying query.
+    
+            .. seealso::
+    
+                :meth:`.Query.first`
+    
+                :meth:`.Query.one_or_none`
+    
+            &quot;&quot;&quot;
+        try:
+            ret = self.one_or_none()
+        except orm_exc.MultipleResultsFound:
+            raise orm_exc.MultipleResultsFound(
+&gt;               &quot;Multiple rows were found for one()&quot;)
+E           sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+
+/opt/conda/envs/learn-env/lib/python3.6/site-packages/sqlalchemy/orm/query.py:2957: MultipleResultsFound</failure></testcase></testsuite>
